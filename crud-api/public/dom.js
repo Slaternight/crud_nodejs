@@ -1,6 +1,7 @@
 const form = document.getElementById('dataForm');
     const itemsTable = document.getElementById('itemsTable').querySelector('tbody');
     const itemNameInput = document.getElementById('itemName');
+    const itemLastNameInput = document.getElementById('itemLastName');
     const itemIdInput = document.getElementById('itemId');
 
     // Cargar todos los datos al inicio
@@ -31,6 +32,7 @@ const form = document.getElementById('dataForm');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = itemNameInput.value;
+      const lastname = itemLastNameInput.value;
       const id = itemIdInput.value;
 
       const method = id ? 'PUT' : 'POST'; // PUT si estamos actualizando, POST si es nuevo
@@ -44,6 +46,7 @@ const form = document.getElementById('dataForm');
 
       // Reiniciar el formulario
       itemNameInput.value = '';
+      itemLastNameInput.value = '';
       itemIdInput.value = '';
 
       loadItems(); // Recargar los datos
@@ -52,6 +55,7 @@ const form = document.getElementById('dataForm');
     // Cargar un dato para editar
     const editItem = (id, name) => {
       itemNameInput.value = name;
+      itemLastNameInput.value = lastname;
       itemIdInput.value = id;
     };
 // Eliminar un dato
