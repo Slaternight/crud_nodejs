@@ -22,7 +22,7 @@ body {
   }
   table {
     width: 100%;
-    background: white;
+    background-color: beige;
     margin-top: 20px;
     border-collapse: collapse;
   }
