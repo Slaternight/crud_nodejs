@@ -19,8 +19,9 @@ const form = document.getElementById('dataForm');
         row.innerHTML = `
           <td>${item.id}</td>
           <td>${item.name}</td>
+          <td>${item.lastname}</td>
           <td>
-            <button onclick="editItem(${item.id}, '${item.name}')">Editar</button>
+            <button onclick="editItem(${item.id}, '${item.name}', '${item.lastname}')">Editar</button>
             <button onclick="deleteItem(${item.id})">Eliminar</button>
           </td>
         `;
@@ -40,7 +41,7 @@ const form = document.getElementById('dataForm');
       const res = await fetch(url, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name })
+        body: JSON.stringify({ name, lastname })
       });
       const data = await res.json();
 
@@ -53,7 +54,7 @@ const form = document.getElementById('dataForm');
     });
 
     // Cargar un dato para editar
-    const editItem = (id, name) => {
+    const editItem = (id, name, lastname) => {
       itemNameInput.value = name;
       itemLastNameInput.value = lastname;
       itemIdInput.value = id;

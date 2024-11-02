@@ -5,6 +5,7 @@
   },
   {
     "name": "Juan",
-    "id": 2
+    "id": 2,
+    "lastname": "undefined"
   }
 ]
