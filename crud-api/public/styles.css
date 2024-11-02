@@ -18,6 +18,7 @@ body {
   }
   button {
     cursor: pointer;
+    font-family: GT Standard Mono, monospace;
   }
   table {
     width: 100%;
