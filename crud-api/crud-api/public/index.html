@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Gestión de Datos</title>
+</head>
+<body>
+
+  <h1>Gestión de Datos</h1>
+
+  <!-- Formulario para agregar/actualizar datos -->
+  <form id="dataForm">
+    <input type="hidden" id="itemId" />
+    <label for="itemName">Nombre:</label>
+    <input type="text" id="itemName" placeholder="Ingrese un nombre" required />
+    <label for="itemLastName">Apellido:</label>
+    <input type="text" id="itemLastName" placeholder="Ingrese un apellido" required />
+    <button type="submit">Agregar/Actualizar</button>
+  </form>
+
+  <!-- Tabla para listar los datos -->
+  <table id="itemsTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí se mostrarán los elementos -->
+    </tbody>
+  </table>
+<script src="dom.js"></script>
+</body>
+</html>
