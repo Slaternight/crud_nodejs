@@ -1,11 +1,12 @@
 [
   {
     "name": "Nombre_prueba",
-    "id": 1
+    "id": 1,
+    "lastname": "aaa"
   },
   {
     "name": "Juan",
     "id": 2,
-    "lastname": "undefined"
+    "lastname": "aaa"
   }
 ]
