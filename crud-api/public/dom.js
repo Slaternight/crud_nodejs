@@ -68,3 +68,106 @@ const deleteItem = async (id) => {
 
     // Cargar los elementos al iniciar
     loadItems();
+
+
+// Lista con dom y cronometro
+let tareas = [];
+let temporizador;
+let minutos = 25;
+let segundos = 0;
+let temporizadorActivo = false;
+
+function mostrarTareas() {
+    const listaTareas = document.getElementById('listaTareas');
+    listaTareas.innerHTML = '';
+
+    tareas.forEach((tarea, indice) => {
+        const itemTarea = document.createElement('div');
+        itemTarea.className = 'item-tarea';
+        
+        const textoTarea = document.createElement('span');
+        textoTarea.textContent = tarea;
+        
+        const botonEditar = document.createElement('button');
+        botonEditar.textContent = 'Editar';
+        botonEditar.className = 'boton-editar';
+        botonEditar.onclick = () => editarTarea(indice);
+
+        const botonEliminar = document.createElement('button');
+        botonEliminar.textContent = 'Eliminar';
+        botonEliminar.className = 'boton-eliminar';
+        botonEliminar.onclick = () => eliminarTarea(indice);
+
+        itemTarea.appendChild(textoTarea);
+        itemTarea.appendChild(botonEditar);
+        itemTarea.appendChild(botonEliminar);
+        listaTareas.appendChild(itemTarea);
+    });
+}
+
+function crearTarea() {
+    const entradaTarea = document.getElementById('entradaTarea');
+    const textoTarea = entradaTarea.value.trim();
+    if (textoTarea) {
+        tareas.push(textoTarea);
+        entradaTarea.value = '';
+        mostrarTareas();
+    }
+}
+
+function editarTarea(indice) {
+    const nuevaTarea = prompt("Edita tu tarea:", tareas[indice]);
+    if (nuevaTarea !== null) {
+        tareas[indice] = nuevaTarea.trim();
+        mostrarTareas();
+    }
+}
+
+function eliminarTarea(indice) {
+    tareas.splice(indice, 1);
+    mostrarTareas();
+}
+
+// Temporizador para tareas
+function iniciarTemporizador() {
+    if (temporizadorActivo) {
+        // Si el temporizador ya está en marcha, lo detenemos
+        clearInterval(temporizador);
+        temporizadorActivo = false;
+        document.querySelector('button[onclick="iniciarTemporizador()"]').textContent = 'Iniciar Temporizador';
+    } else {
+        // Si el temporizador no está en marcha, lo iniciamos
+        temporizador = setInterval(() => {
+            if (segundos === 0) {
+                if (minutos === 0) {
+                    clearInterval(temporizador);
+                    temporizadorActivo = false;
+                    alert("¡Tiempo terminado!");
+                    reiniciarTemporizador();
+                } else {
+                    minutos--;
+                    segundos = 59;
+                }
+            } else {
+                segundos--;
+            }
+            document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
+            document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
+        }, 1000);
+
+        temporizadorActivo = true;
+        document.querySelector('button[onclick="iniciarTemporizador()"]').textContent = 'Pausar Temporizador';
+    }
+}
+
+function reiniciarTemporizador() {
+    clearInterval(temporizador);
+    minutos = 25;
+    segundos = 0;
+    document.getElementById('minutos').textContent = '25';
+    document.getElementById('segundos').textContent = '00';
+    temporizadorActivo = false;
+    document.querySelector('button[onclick="iniciarTemporizador()"]').textContent = 'Iniciar Temporizador';
+}
+
+document.addEventListener("DOMContentLoaded", mostrarTareas);
