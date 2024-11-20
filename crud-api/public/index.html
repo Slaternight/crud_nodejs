@@ -1,39 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Gestión de Datos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <h1>Bienvenido, Organizate Hoy</h1>
+        <br>
+        <p>Organizar tus tareas diarias te ayuda a mantener el enfoque, reducir el estrés y alcanzar tus metas de manera efectiva.</p>
+        <p>¡Empieza hoy y observa cómo mejora tu productividad!</p>
+    </header>
 
-  <h1>Gestión de Datos</h1>
+    <main>
+        <div class="contenedor">
+            <h2>Lista de Tareas</h2>
+            <div class="entrada-tarea">
+                <input type="text" id="entradaTarea" placeholder="Escribe una nueva tarea...">
+                <button onclick="crearTarea()">Agregar Tarea</button>
+            </div>
+            <div class="lista-tareas" id="listaTareas"></div>
+        </div>
 
-  <!-- Formulario para agregar/actualizar datos -->
-  <form id="dataForm">
-    <input type="hidden" id="itemId" />
-    <label for="itemName">Nombre:</label>
-    <input type="text" id="itemName" placeholder="Ingrese un nombre" required />
-    <label for="itemLastName">Apellido:</label>
-    <input type="text" id="itemLastName" placeholder="Ingrese un apellido" required />
-    <button type="submit">Agregar/Actualizar</button>
-  </form>
+        <div class="temporizador">
+            <h2>Temporizador para Tareas</h2>
+            <p>Usa el temporizador para concentrarte en una tarea a la vez.</p>
+            <div class="reloj">
+                <span id="minutos">25</span>:<span id="segundos">00</span>
+            </div>
+            <button onclick="iniciarTemporizador()">Iniciar Temporizador</button>
+            <button onclick="reiniciarTemporizador()">Reiniciar</button>
+        </div>
 
-  <!-- Tabla para listar los datos -->
-  <table id="itemsTable">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Aquí se mostrarán los elementos -->
-    </tbody>
-  </table>
-<script src="dom.js"></script>
+        <!-- Sección para Gestión de Datos -->
+
+        <div class="gestion-datos">
+            <center><button onclick="toggleGestion()">Mostrar / Ocultar   Gestión de Datos</button></center>
+            <br>
+            <div id="gestionDatosContainer" class="hidden">
+                <h2>Gestión de Datos</h2>
+                <form id="dataForm">
+                    <center>
+                    <input type="hidden" id="itemId" />
+                    <label for="itemName">Nombre:</label>
+                    <input type="text" id="itemName" placeholder="Ingrese un nombre" required />
+                    <br>
+                    <label for="itemLastName">Apellido:</label>
+                    <input type="text" id="itemLastName" placeholder="Ingrese un apellido" required />
+                    <br>
+                    <br>
+                    <button type="submit">Agregar/Actualizar</button>
+                    <br>
+                    </center>
+                    
+                 <!-- Tabla para listar los datos -->    
+                </form>
+                <center>
+                <table id="itemsTable">
+                    <thead>
+                        <br>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Acciones</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se mostrarán los elementos -->
+                    </tbody>
+                </table>
+                </center>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>¡Recuerda que cada pequeña tarea completada es un paso más cerca de tus metas!</p>
+        <p>Mantén el enfoque y continúa avanzando.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="dom.js"></script>
+    <script>
+        function toggleGestion() {
+            const container = document.getElementById('gestionDatosContainer');
+            container.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
+
+
